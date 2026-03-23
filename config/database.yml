@@ -1,0 +1,21 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("POSTGRES_HOST", "localhost") %>
+  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "") %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("POSTGRES_DB", "quote_app_development") %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("POSTGRES_DB", "quote_app_test") %>_test
+
+production:
+  <<: *default
+  password: <%= ENV.fetch("POSTGRES_DB", "quote_app_production") %>

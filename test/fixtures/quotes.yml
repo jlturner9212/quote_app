@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: MyString
+  supplier: MyString
+  quote: 9.99
+  tax_included: false
+  state: MyString
+  tax_rate: 9.99
+
+two:
+  customer: MyString
+  supplier: MyString
+  quote: 9.99
+  tax_included: false
+  state: MyString
+  tax_rate: 9.99
