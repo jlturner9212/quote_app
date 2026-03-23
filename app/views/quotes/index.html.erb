@@ -1,0 +1,47 @@
+<% content_for :title, "Quotes" %>
+
+<%= link_to "+ Import CSV", new_import_path, class:"button" %>
+
+<h1>Quotes</h1>
+
+<% if @quotes.empty? %>
+  <div>
+    No quotes imported yet. <%= link_to "Import a CSV", new_import_path %> to get started.
+  </div>
+<% else %>
+  <div>
+    <%= @quotes.count %> records
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <% ["Customer", "Supplier", "Quote", "Tax Included", "State", "Tax Rate", ""].each do |h| %>
+        <th>
+          <%= h %>
+        </th>
+          <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quotes.each do |quote| %>
+      <tr>
+        <td><%= quote.customer %></td>
+        <td><%= quote.supplier %></td>
+        <td><%= number_with_precision(quote.quote, precision: 4) %></td>
+        <td>
+          <% if quote.tax_included %>
+            <span>Yes</span>
+          <% else %>
+            <span>No</span>
+          <% end %>
+        </td>
+        <td><%= quote.state %></td>
+        <td><%= number_with_precision(quote.tax_rate, precision: 2) %>%</td>
+        <td>
+          <%= link_to "View", quote_path(quote), class:"button" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
